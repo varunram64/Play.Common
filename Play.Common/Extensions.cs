@@ -8,7 +8,6 @@ using Play.Common.IRepository;
 using Play.Catalog.Service.Settings;
 using Play.Common.Entities;
 using Play.Common.Repository;
-using Newtonsoft.Json;
 
 namespace Play.Common
 {
@@ -23,8 +22,8 @@ namespace Play.Common
             services.AddSingleton(serviceProvider =>
             {
                 var configuration = serviceProvider.GetService<IConfiguration>();
-                var serviceSettings = JsonConvert.DeserializeObject<ServiceSettings>(configuration.GetSection(nameof(ServiceSettings)).Value.ToJson());
-                var mongodbSettigns = JsonConvert.DeserializeObject<MongoDbSettings>(configuration.GetSection(nameof(MongoDbSettings)).Value.ToJson());
+                var serviceSettings = configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+                var mongodbSettigns = configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
                 var mongoClient = new MongoClient(mongodbSettigns.ConnectionString);
                 return mongoClient.GetDatabase(serviceSettings.ServiceName);
             });
@@ -34,7 +33,7 @@ namespace Play.Common
 
         public static IServiceCollection AddMongoRepository<T>(this IServiceCollection services, string collectionName) where T : IEntity
         {
-            services.AddTransient<IMongoRepository<T>, MongoRepository<T>>(serviceProvider =>
+            services.AddSingleton<IMongoRepository<T>, MongoRepository<T>>(serviceProvider =>
             {
                 var database = serviceProvider.GetService<IMongoDatabase>();
                 return new MongoRepository<T>(database, collectionName);
