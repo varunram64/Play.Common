@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Play.Common", "Play.Common\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget Project Packages", "Nuget Project Packages", "{E393E5D4-3E8A-4072-A142-20CA18AA2BAD}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\packages\Play.Catalog.Contracts.1.0.0.nupkg = ..\..\..\..\packages\Play.Catalog.Contracts.1.0.0.nupkg
+		..\..\..\..\packages\Play.Common.1.0.0.nupkg = ..\..\..\..\packages\Play.Common.1.0.0.nupkg
+		..\..\..\..\packages\Play.Common.1.0.2.nupkg = ..\..\..\..\packages\Play.Common.1.0.2.nupkg
 		..\..\..\..\packages\Play.Common.1.0.3.nupkg = ..\..\..\..\packages\Play.Common.1.0.3.nupkg
+		..\..\..\..\packages\Play.Common.1.0.4.nupkg = ..\..\..\..\packages\Play.Common.1.0.4.nupkg
 	EndProjectSection
 EndProject
 Global
